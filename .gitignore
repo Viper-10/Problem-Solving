@@ -1,2 +1,6 @@
 *a.exe
 main.cpp
+*.exe
+main.py
+
+.vscode/
