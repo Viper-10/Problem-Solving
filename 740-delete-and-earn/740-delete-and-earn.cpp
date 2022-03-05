@@ -1,7 +1,5 @@
-class Solution {
-    int* store; 
-    
-    int recursion(vector<int>& arr, int index){
+class Solution {    
+    int recursion(vector<int>& arr, int index, int* store){
         if(index == arr.size()) return 0; 
         
         if(store[index] == -1){
@@ -20,13 +18,13 @@ class Solution {
                 j++; 
             }
 
-            ans = recursion(arr, j) + sumOfAi; 
+            ans = recursion(arr, j, store) + sumOfAi; 
 
             if(i != j){
                 int sumOfAiPlusOne = (j-i) * arr[i]; 
                 while(j < arr.size() && arr[j] == arr[i]+1) j++; 
 
-                ans = max(ans, recursion(arr, j)+sumOfAiPlusOne);
+                ans = max(ans, recursion(arr, j, store)+sumOfAiPlusOne);
             }       
             
             store[index] = ans; 
@@ -35,14 +33,22 @@ class Solution {
         return store[index]; 
         
     }
-public:
-    int deleteAndEarn(vector<int>& arr) {
-        sort(arr.begin(), arr.end()); 
+    int recursionHelper(vector<int>& arr){
+        int* store; 
         store = new int[arr.size()]; 
         
         for(int i = 0;i < arr.size(); ++i){
             store[i] = -1; 
         }
-        return recursion(arr, 0); 
+        
+        return recursion(arr, 0, store); 
+    }
+public:
+    int deleteAndEarn(vector<int>& arr) {
+        sort(arr.begin(), arr.end()); 
+        
+        return recursionHelper(arr); 
+           
+        
     }
 };
