@@ -1,9 +1,9 @@
 class Solution {
 public:
     int rob(vector<int>& nums) {
-        int store[100]; 
         int n = nums.size(); 
-        
+        int* store = new int[n];  
+
         if(n == 1){
             return nums[0]; 
         }
