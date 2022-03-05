@@ -1,25 +1,20 @@
 class Solution {
-    int n;  
-    int store[100]; 
-
-    int recursion(vector<int>& nums, int index){
-        if(index >= n) return 0; 
-        
-        if(store[index] == -1){
-            int ans1 = nums[index] + recursion(nums, index+2); 
-            int ans2 = 0; 
-            if(index+1 < n)  ans2 = nums[index+1] + recursion(nums, index+3); 
-            
-            store[index] = max(ans1, ans2);
-        }
-        
-        return store[index]; 
-    }
 public:
     int rob(vector<int>& nums) {
-        memset(store, -1, sizeof(store));
-        n = nums.size(); 
+        int store[100]; 
+        int n = nums.size(); 
         
-        return recursion(nums, 0); 
+        if(n == 1){
+            return nums[0]; 
+        }
+        
+        store[0] = nums[0]; 
+        store[1] = max(nums[0], nums[1]); 
+        
+        for(int i = 2;i < n; ++i){
+            store[i] = max(store[i-1], store[i-2] + nums[i]); 
+        }
+        
+        return store[n-1]; 
     }
 };
