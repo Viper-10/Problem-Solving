@@ -1,19 +1,18 @@
 class Solution {
 public:
     int tribonacci(int n) {
-        if(n < 2) return n; 
+        int dp[3] = {0, 1, 1}; 
         
-        if(n == 2) return 1; 
+        if(n < 3) return dp[n]; 
         
-        int t1 = 0, t2 = 1, t3 = 1, t4; 
+        int i = 0, sum = 2; 
         
-        while(n-- > 2){
-            t4 = t1 + t2 + t3; 
-            t1 = t2; 
-            t2 = t3; 
-            t3 = t4; 
+        while(n-- > 3){
+            int saveI = dp[i]; 
+            dp[i] = sum; 
+            sum += (dp[i] - saveI); 
+            i = (i+1) % 3; 
         }
-        
-        return t4; 
+        return sum; 
     }
 };
