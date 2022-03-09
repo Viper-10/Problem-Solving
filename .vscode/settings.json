@@ -3,7 +3,9 @@
     "ostream": "cpp",
     "vector": "cpp",
     "queue": "cpp",
-    "bitset": "cpp"
+    "bitset": "cpp",
+    "deque": "cpp",
+    "string": "cpp"
   },
   "C_Cpp.errorSquiggles": "Disabled"
 }
